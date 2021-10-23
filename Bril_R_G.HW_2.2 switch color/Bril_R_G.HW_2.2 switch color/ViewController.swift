@@ -23,18 +23,28 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        colorViewImage.layer.cornerRadius = 17
+
+        changeColor()
+        textVolueChange()
+        
     }
     
     // функция изменения цвета по заданному значению
-    func changeColor() {
+    private func changeColor() {
         colorViewImage.backgroundColor = UIColor(displayP3Red: CGFloat(redSlider.value), green: CGFloat(greenSlider.value), blue: CGFloat(blueSlider.value), alpha: CGFloat(1))
+    }
+    
+    //функция округления остатка
+    private func roundValue (from slider: UISlider) -> String {
+        return String(round(slider.value * 100) / 100)
     }
    
     // функция изменения текстового значения цвета
-    func textVolueChange() {
-        redTextValue.text = String(redSlider.value)
-        greenTextValue.text = String(greenSlider.value)
-        blueTextValue.text = String(blueSlider.value)
+    private func textVolueChange() {
+        redTextValue.text = roundValue(from: redSlider)
+        greenTextValue.text = roundValue(from: greenSlider)
+        blueTextValue.text = roundValue(from: blueSlider)
     }
     
     //метод вызова функций через слайдер
@@ -42,6 +52,7 @@ class ViewController: UIViewController {
         changeColor();
         textVolueChange()
     }
+    
     
 }
 
